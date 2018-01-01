@@ -8,5 +8,8 @@
     <string name="action_share">Share</string>
 
     <string name="up">Up</string>
+    <string name="storyLoadedMessage">Content is loaded !!!</string>
+    <string name="unableToLoadStory">Unable to Load Content !!</string>
+    <string name="dismissActionMessage">Dismiss</string>
 
 </resources>

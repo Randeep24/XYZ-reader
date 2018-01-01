@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/text_padding_botton_top"
-                android:background="@drawable/photo_background_protection"
+                android:background="@android:color/darker_gray"
                 android:paddingEnd="@dimen/text_padding_start_end"
                 android:paddingStart="@dimen/text_padding_start_end"
                 android:paddingTop="@dimen/text_padding_botton_top"
@@ -85,9 +85,10 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/share_fab"
         android:layout_marginEnd="@dimen/fab_margin_end"
-        style="@style/FabStyle"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|right|end"
         app:srcCompat="@drawable/ic_share" />

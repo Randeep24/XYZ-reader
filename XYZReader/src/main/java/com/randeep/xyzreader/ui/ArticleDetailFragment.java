@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -160,6 +161,15 @@ public class ArticleDetailFragment extends Fragment implements
         bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
+
+            String snackBarMessage = getString(R.string.storyLoadedMessage);
+            int snackbarDisplayLength = Snackbar.LENGTH_LONG;
+            int snackbarColor = getResources().getColor(R.color.colorPrimary);
+
+            Snackbar informationalSnackbar = Snackbar.make(this.mRootView, snackBarMessage, snackbarDisplayLength);
+            informationalSnackbar.getView().setBackgroundColor(snackbarColor);
+            informationalSnackbar.show();
+
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
@@ -200,15 +210,32 @@ public class ArticleDetailFragment extends Fragment implements
                                     Bitmap bitmap = ((BitmapDrawable) mPhotoView.getDrawable()).getBitmap(); // Ew!
                                     Palette palette = PaletteTransformation.getPalette(bitmap);
 
-                                    int primaryDark = getResources().getColor(R.color.colorPrimaryDark);
                                     int primary = getResources().getColor(R.color.colorPrimary);
-                                    collapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(primary));
 
                                     bylineView.setBackgroundColor(palette.getMutedColor(primary));
                                 }
                             });
 
+
+
         } else {
+
+            String snackBarErrorMessage = getString(R.string.unableToLoadStory);
+            int snackbarDisplayLength = Snackbar.LENGTH_INDEFINITE;
+            int snackbarColor = getResources().getColor(R.color.colorPrimary);
+            String actionLabelMessage = getString(R.string.dismissActionMessage);
+
+            final Snackbar errorSnackbar = Snackbar.make(this.mRootView, snackBarErrorMessage,snackbarDisplayLength);
+            errorSnackbar.getView().setBackgroundColor(snackbarColor);
+            errorSnackbar.setAction(actionLabelMessage, new View.OnClickListener (){
+
+                @Override
+                public void onClick(View view) {
+                    errorSnackbar.dismiss();
+                }
+            });
+            errorSnackbar.show();
+
             mRootView.setVisibility(View.GONE);
             titleView.setTitle("N/A");
             titleView.setSubtitle("N/A" );
